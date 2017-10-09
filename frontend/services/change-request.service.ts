@@ -5,7 +5,7 @@ import { IDocumentsService } from "../documents/service/documents.service";
 export const changeRequestServiceName = "change-request.service";
 
 export interface IChangeRequestService {
-    changeStatus(changeRequest: IChangeRequestDto, status: IStatusDto);
+    changeStatus(changeRequest: IChangeRequestDto, status: IStatusDto): void;
 }
 
 export class ChangeRequestService implements IChangeRequestService {
@@ -14,7 +14,7 @@ export class ChangeRequestService implements IChangeRequestService {
     constructor(documentsService: IDocumentsService) {
         this._documentsService = documentsService;
     }
-    changeStatus(changeRequest: IChangeRequestDto, status: IStatusDto) {
+    changeStatus(changeRequest: IChangeRequestDto, status: IStatusDto): void {
         // workflow
         this._documentsService.save(changeRequest.documents);
         changeRequest.status = status;
